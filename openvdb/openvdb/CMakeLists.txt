@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.24)
 project(OpenVDBCore LANGUAGES CXX)
 
 include(GNUInstallDirs)
-include(${CMAKE_SOURCE_DIR}/cmake/OpenVDBUtils.cmake)
+include(${OpenVDB_SOURCE_DIR}/cmake/OpenVDBUtils.cmake)
 
 ###### OpenVDB Core Options
 
@@ -568,9 +568,9 @@ set(OPENVDB_LIBRARY_SIMD_INCLUDE_FILES
 )
 
 list(APPEND OPENVDB_LIBRARY_MATH_INCLUDE_FILES
-  ${CMAKE_SOURCE_DIR}/ext/imath/openvdb/math/Half.h)
+  ${OpenVDB_SOURCE_DIR}/ext/imath/openvdb/math/Half.h)
 list(APPEND OPENVDB_LIBRARY_SOURCE_FILES
-  ${CMAKE_SOURCE_DIR}/ext/imath/openvdb/math/Half.cc)
+  ${OpenVDB_SOURCE_DIR}/ext/imath/openvdb/math/Half.cc)
 
 ##########################################################################
 
@@ -670,11 +670,11 @@ if(OPENVDB_CORE_STATIC)
   )
 
   if(NOT USE_IMATH_HALF)
-    target_include_directories(openvdb_static SYSTEM PUBLIC ${CMAKE_SOURCE_DIR}/ext/imath)
+    target_include_directories(openvdb_static SYSTEM PUBLIC ${OpenVDB_SOURCE_DIR}/ext/imath)
   endif()
 
   if(USE_VCL)
-    target_include_directories(openvdb_static SYSTEM PUBLIC ${CMAKE_SOURCE_DIR}/ext/vcl)
+    target_include_directories(openvdb_static SYSTEM PUBLIC ${OpenVDB_SOURCE_DIR}/ext/vcl)
   endif()
 
   target_compile_definitions(openvdb_static
@@ -711,11 +711,11 @@ if(OPENVDB_CORE_SHARED)
   )
 
   if(NOT USE_IMATH_HALF)
-    target_include_directories(openvdb_shared SYSTEM PUBLIC ${CMAKE_SOURCE_DIR}/ext/imath)
+    target_include_directories(openvdb_shared SYSTEM PUBLIC ${OpenVDB_SOURCE_DIR}/ext/imath)
   endif()
 
   if(USE_VCL)
-    target_include_directories(openvdb_shared SYSTEM PUBLIC ${CMAKE_SOURCE_DIR}/ext/vcl)
+    target_include_directories(openvdb_shared SYSTEM PUBLIC ${OpenVDB_SOURCE_DIR}/ext/vcl)
   endif()
 
   target_compile_definitions(openvdb_shared
@@ -781,5 +781,5 @@ install(FILES ${OPENVDB_LIBRARY_THREAD_INCLUDE_FILES} DESTINATION ${OPENVDB_INST
 install(FILES ${OPENVDB_LIBRARY_SIMD_INCLUDE_FILES} DESTINATION ${OPENVDB_INSTALL_INCLUDEDIR}/openvdb/simd)
 
 if(USE_VCL)
-  install(DIRECTORY ${CMAKE_SOURCE_DIR}/ext/vcl/openvdb DESTINATION ${OPENVDB_INSTALL_INCLUDEDIR})
+  install(DIRECTORY ${OpenVDB_SOURCE_DIR}/ext/vcl/openvdb DESTINATION ${OPENVDB_INSTALL_INCLUDEDIR})
 endif()
